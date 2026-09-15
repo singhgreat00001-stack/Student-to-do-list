@@ -11,7 +11,6 @@ A complete Python desktop To-Do List project designed for a VITyarthi-style Buil
 - Delete tasks
 - Search tasks
 - Filter by status and priority
-- Persistent JSON storage
 - Overdue-task detection
 - Completion-rate analytics
 - High-priority task count
@@ -23,7 +22,7 @@ A complete Python desktop To-Do List project designed for a VITyarthi-style Buil
 
 - Python 3
 - Tkinter
-- JSON
+  
 - Dataclasses
 - Pytest for optional tests
 - Git and GitHub
