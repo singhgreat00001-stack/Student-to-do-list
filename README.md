@@ -37,7 +37,6 @@ Student_Todo_List_VITyarthi/
 ├── statement.md
 ├── PROJECT_REPORT.md
 ├── requirements.txt
-├── .gitignore
 ├── data/
 │   └── todos.json
 ├── todo_app/
