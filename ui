@@ -1,0 +1,156 @@
+import tkinter as tk
+from tkinter import ttk, messagebox
+from .task_manager import TodoManager
+from .validators import validate_todo
+from .analytics import get_statistics
+from .search import filter_todos
+
+class App(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title("Student To-Do List Manager")
+        self.geometry("1050x680")
+        self.manager = TodoManager()
+        self.build_ui()
+        self.refresh()
+
+    def build_ui(self):
+        form = ttk.LabelFrame(self, text="Create To-Do", padding=10)
+        form.pack(fill="x", padx=10, pady=10)
+
+        ttk.Label(form, text="Task Title").grid(row=0, column=0, padx=5, pady=5)
+        self.title_entry = ttk.Entry(form, width=25)
+        self.title_entry.grid(row=0, column=1, padx=5)
+
+        ttk.Label(form, text="Description").grid(row=0, column=2, padx=5)
+        self.desc_entry = ttk.Entry(form, width=28)
+        self.desc_entry.grid(row=0, column=3, padx=5)
+
+        ttk.Label(form, text="Due Date").grid(row=0, column=4, padx=5)
+        self.date_entry = ttk.Entry(form, width=15)
+        self.date_entry.grid(row=0, column=5, padx=5)
+
+        ttk.Label(form, text="Priority").grid(row=1, column=0, padx=5, pady=5)
+        self.priority = ttk.Combobox(form, values=["Low", "Medium", "High"],
+                                     state="readonly", width=12)
+        self.priority.set("Medium")
+        self.priority.grid(row=1, column=1, padx=5)
+
+        ttk.Label(form, text="Category").grid(row=1, column=2, padx=5)
+        self.category_entry = ttk.Entry(form, width=28)
+        self.category_entry.grid(row=1, column=3, padx=5)
+
+        ttk.Button(form, text="Add Task", command=self.add_task).grid(row=1, column=4, padx=5)
+        ttk.Button(form, text="Complete", command=self.complete).grid(row=1, column=5, padx=5)
+
+        controls = ttk.Frame(self)
+        controls.pack(fill="x", padx=10, pady=5)
+
+        ttk.Label(controls, text="Search").pack(side="left")
+        self.search_entry = ttk.Entry(controls, width=25)
+        self.search_entry.pack(side="left", padx=5)
+        self.search_entry.bind("<KeyRelease>", lambda e: self.refresh())
+
+        ttk.Label(controls, text="Status").pack(side="left", padx=(15, 5))
+        self.status_filter = ttk.Combobox(
+            controls, values=["All", "Pending", "Completed"],
+            state="readonly", width=12
+        )
+        self.status_filter.set("All")
+        self.status_filter.pack(side="left")
+        self.status_filter.bind("<<ComboboxSelected>>", lambda e: self.refresh())
+
+        ttk.Label(controls, text="Priority").pack(side="left", padx=(15, 5))
+        self.priority_filter = ttk.Combobox(
+            controls, values=["All", "Low", "Medium", "High"],
+            state="readonly", width=12
+        )
+        self.priority_filter.set("All")
+        self.priority_filter.pack(side="left")
+        self.priority_filter.bind("<<ComboboxSelected>>", lambda e: self.refresh())
+
+        ttk.Button(controls, text="Delete Selected",
+                   command=self.delete).pack(side="right")
+
+        columns = ("ID", "Title", "Description", "Due Date",
+                   "Priority", "Category", "Status")
+        self.tree = ttk.Treeview(self, columns=columns, show="headings", height=20)
+
+        widths = [50, 180, 220, 100, 90, 120, 100]
+        for col, width in zip(columns, widths):
+            self.tree.heading(col, text=col)
+            self.tree.column(col, width=width)
+
+        self.tree.pack(fill="both", expand=True, padx=10, pady=5)
+
+        self.stats = ttk.Label(self, text="")
+        self.stats.pack(pady=8)
+
+    def add_task(self):
+        title = self.title_entry.get()
+        desc = self.desc_entry.get()
+        due = self.date_entry.get()
+        priority = self.priority.get()
+        category = self.category_entry.get()
+
+        valid, message = validate_todo(title, due, priority)
+        if not valid:
+            messagebox.showerror("Validation Error", message)
+            return
+
+        self.manager.add(title, desc, due, priority, category)
+        self.clear_form()
+        self.refresh()
+
+    def selected_id(self):
+        selection = self.tree.selection()
+        if not selection:
+            messagebox.showwarning("Selection", "Please select a task.")
+            return None
+        return int(self.tree.item(selection[0])["values"][0])
+
+    def complete(self):
+        task_id = self.selected_id()
+        if task_id is not None:
+            self.manager.complete(task_id)
+            self.refresh()
+
+    def delete(self):
+        task_id = self.selected_id()
+        if task_id is not None and messagebox.askyesno("Confirm", "Delete this task?"):
+            self.manager.delete(task_id)
+            self.refresh()
+
+    def clear_form(self):
+        for entry in [self.title_entry, self.desc_entry,
+                      self.date_entry, self.category_entry]:
+            entry.delete(0, tk.END)
+        self.priority.set("Medium")
+
+    def refresh(self):
+        for item in self.tree.get_children():
+            self.tree.delete(item)
+
+        todos = filter_todos(
+            self.manager.all(),
+            self.search_entry.get(),
+            self.status_filter.get(),
+            self.priority_filter.get()
+        )
+
+        for t in todos:
+            self.tree.insert("", "end", values=(
+                t.id, t.title, t.description, t.due_date,
+                t.priority, t.category, t.status
+            ))
+
+        s = get_statistics(self.manager.all())
+        self.stats.config(
+            text=f"Total: {s['total']}   |   Completed: {s['completed']}   |   "
+                 f"Pending: {s['pending']}   |   Overdue: {s['overdue']}   |   "
+                 f"High Priority: {s['high_priority']}   |   "
+                 f"Completion Rate: {s['completion_rate']}%"
+        )
+
+def run():
+    App().mainloop()
