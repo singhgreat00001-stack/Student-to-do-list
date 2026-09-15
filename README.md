@@ -37,8 +37,6 @@ Student_Todo_List_VITyarthi/
 ├── statement.md
 ├── PROJECT_REPORT.md
 ├── requirements.txt
-├── data/
-│   └── todos.json
 ├── todo_app/
 │   ├── __init__.py
 │   ├── models.py
