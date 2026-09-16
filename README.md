@@ -1,5 +1,5 @@
 # Student-to-do-list
-tells about a proper description of an ideal student to do list
+tells about a proper description of an ideal student to do list. Student to do list is a simple and user friendly programme that helps student organize their daily tasks,assignment and all other tasks
 # Student To-Do List Manager
 
 A complete Python desktop To-Do List project designed for a VITyarthi-style Build Your Own Project submission.
