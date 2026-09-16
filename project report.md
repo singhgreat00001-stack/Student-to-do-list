@@ -3,10 +3,10 @@
 ## 1. Cover Page
 
 **Project Title:** Student To-Do List Manager  
-**Student Name:** __________________________  
-**Registration Number:** ____________________  
-**School/College:** _________________________  
-**Course:** _________________________________  
+**Student Name:**Prachi Singh 
+**Registration Number:** 26BCE11448 
+**School/College:** VIT BHOPAL
+**Course:** B.Tech Computer Science Core 
 **Academic Year:** 2026–27
 
 
