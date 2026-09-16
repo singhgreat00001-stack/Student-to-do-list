@@ -1,0 +1,39 @@
+LASS DIAGRAM DESCRIPTION
+
+Todo
+- id
+- title
+- description
+- due_date
+- priority
+- category
+- status
++ to_dict()
++ from_dict()
+
+TodoManager
+- todos
++ next_id()
++ add()
++ update()
++ delete()
++ complete()
++ all()
+
+App
++ build_ui()
++ add_task()
++ complete()
++ delete()
++ refresh()
++ clear_form()
+
+Analytics
++ get_statistics()
+
+Search
++ filter_todos()
+
+Validators
++ validate_todo()
++ validate_status()
