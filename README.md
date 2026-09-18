@@ -34,7 +34,7 @@ Student_Todo_List_VITyarthi/
 ├── main.py
 ├── README.md
 ├── statement.md
-├── PROJECT_REPORT.md
+├── PROJECT_REPORT.pdf
 ├── requirements.txt
 ├── todo_app/
 │   ├── __init__.py
