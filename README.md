@@ -37,7 +37,6 @@ Student_Todo_List_VITyarthi/
 ├── PROJECT_REPORT.pdf
 ├── requirements.txt
 ├── todo_app/
-│   ├── __init__.py
 │   ├── models.py
 │   ├── storage.py
 │   ├── validators.py
