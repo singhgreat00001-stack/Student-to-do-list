@@ -84,13 +84,10 @@ git init
 git add .
 git commit -m "Create Student To-Do List Manager"
 git branch -M main
-git remote add origin YOUR_GITHUB_REPOSITORY_URL
+git remote add origin https://github.com/singhgreat00001-stack/Student-to-do-list.git
 git push -u origin main
 ```
 
-## Git and GitHub
-
-Git is the version-control system used to track project changes. GitHub is the online platform used to host the Git repository, collaborate, and share the project.
 
 ## Future Improvements
 
