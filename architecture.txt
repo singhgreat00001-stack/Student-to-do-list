@@ -1,4 +1,4 @@
-YSTEM ARCHITECTURE
+SYSTEM ARCHITECTURE
 
              +------------------+
              |      Student     |
@@ -32,4 +32,4 @@ YSTEM ARCHITECTURE
           | todos.json   |
           +--------------+
 
-Analytics reads task data and calculates progress st
+Analytics reads task data and calculates progress statistics
