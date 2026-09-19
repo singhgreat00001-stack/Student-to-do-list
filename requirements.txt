@@ -1,0 +1,3 @@
+# Core project uses Python Standard Library (Tkinter, json, dataclasses).
+# Optional dependency for running automated unit tests:
+pytest>=8.0.0
