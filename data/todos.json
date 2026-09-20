@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "C++",
+    "description": "Study",
+    "due_date": "2026-09-25",
+    "priority": "High",
+    "category": "Coding",
+    "status": "Completed"
+  },
+  {
+    "id": 2,
+    "title": "Data Structures Lab Report",
+    "description": "Implement AVL Trees and write analysis section for Lab 4",
+    "due_date": "2026-09-24",
+    "priority": "High",
+    "category": "Academic",
+    "status": "Completed"
+  },
+  {
+    "id": 3,
+    "title": "DBMS Quiz Preparation",
+    "description": "Review ER modeling, relational algebra, and SQL normalization",
+    "due_date": "2026-09-28",
+    "priority": "Medium",
+    "category": "Study",
+    "status": "Pending"
+  },
+  {
+    "id": 4,
+    "title": "Hackathon Team Registration",
+    "description": "Submit team roster and problem statement preference on portal",
+    "due_date": "2026-09-30",
+    "priority": "Low",
+    "category": "Extracurricular",
+    "status": "Pending"
+  }
+]

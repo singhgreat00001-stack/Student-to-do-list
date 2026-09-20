@@ -1,0 +1,14 @@
+USE CASE DIAGRAM DESCRIPTION
+
+Actor: Student
+
+Student can:
+- Add To-Do Task
+- View Tasks
+- Search Tasks
+- Filter Tasks
+- Mark Task Completed
+- Delete Task
+- View Statistics
+
+The Student interacts with the graphical user interface.

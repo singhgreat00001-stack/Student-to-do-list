@@ -1,0 +1,35 @@
+SYSTEM ARCHITECTURE
+
+             +------------------+
+             |      Student     |
+             +--------+---------+
+                      |
+                      v
+             +------------------+
+             |  Tkinter GUI     |
+             |     ui.py        |
+             +--------+---------+
+                      |
+                      v
+             +------------------+
+             |  Task Manager    |
+             | task_manager.py  |
+             +---+----------+---+
+                 |          |
+          +------v--+    +--v---------+
+          |Validator|    |Search      |
+          +---------+    +------------+
+                 |
+                 v
+          +--------------+
+          |   Storage    |
+          |  storage.py  |
+          +------+-------+
+                 |
+                 v
+          +--------------+
+          | JSON Database|
+          | todos.json   |
+          +--------------+
+
+Analytics reads task data and calculates progress statistics including completion rate and overdue counts.
